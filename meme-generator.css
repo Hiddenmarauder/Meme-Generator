@@ -1,0 +1,36 @@
+.container {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .topText,
+  .bottomText {
+    position: absolute;
+    font-family: Impact, sans-serif;
+    font-size: 32px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+  
+  .topText {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .bottomText {
+    bottom: 10px;
+    left: 10px;
+  }
+  
