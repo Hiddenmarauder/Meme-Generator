@@ -26,25 +26,18 @@ function MemeGenerator() {
   };
 
   const handleGenerateMeme = () => {
-    // This section of code is updated to use React's DOM manipulation instead of direct DOM manipulation
-    // Create JSX elements instead of using document.createElement
+    const gf = new GiphyFetch('UCJxF5HIGQZ5NPACd5nUW1nHiV0rymUd'); // Replace 'YOUR_GIPHY_API_KEY' with your actual Giphy API key
 
-    const memeContainer = document.getElementById('memeContainer');
+    gf.random({ tag: 'meme' }).then(({ data }) => {
+      const selectedImage = data.images.downsized.url;
 
-    const memeImage = <img src={selectedImage} alt="Meme Image" />;
-
-    const topTextElement = <div className="topText">{topText}</div>;
-
-    const bottomTextElement = <div className="bottomText">{bottomText}</div>;
-
-    ReactDOM.render(
-      <div>
-        {memeImage}
-        {topTextElement}
-        {bottomTextElement}
-      </div>,
-      memeContainer
-    );
+      const memeContainer = document.getElementById('memeContainer');
+      memeContainer.innerHTML = `
+        <img src="${selectedImage}" alt="Meme Image">
+        <div class="topText">${topText}</div>
+        <div class="bottomText">${bottomText}</div>
+      `;
+    });
   };
 
   return (
@@ -63,7 +56,7 @@ function MemeGenerator() {
           className="form-control"
         />
       </div>
-      <Grid width={800} columns={3} fetchGifs={GiphyFetch('YOUR_GIPHY_API_KEY').trending} />
+      <Grid width={800} columns={3} fetchGifs={() => GiphyFetch('UCJxF5HIGQZ5NPACd5nUW1nHiV0rymUd').trending()} />
       <button onClick={handleGenerateMeme} className="btn btn-primary">
         Generate Meme
       </button>
@@ -73,5 +66,3 @@ function MemeGenerator() {
 }
 
 export default MemeGenerator;
-
-
